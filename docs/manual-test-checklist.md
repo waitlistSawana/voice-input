@@ -1,18 +1,18 @@
-# 手工验证清单
+# Manual Test Checklist
 
-- 首次启动时授予 `Microphone`、`Speech Recognition` 和 `Accessibility` 权限；随后重新启动，确认在“已授权”和“拒绝授权”两种状态下应用都能正常处理。
-- 按住 `Fn` 说话，确认只有在按住期间才开始录音，松开后立即停止。
-- 在文本输入框里按住 `Fn` 时，确认系统 emoji 选择器不会弹出。
-- 分别用较轻和较大的音量说话，确认 HUD 上的实时波形会明显跟随输入强弱变化。
-- 确认 partial transcript 更新时，HUD 始终保持底部居中，并且会随着文本长度平滑伸缩。
-- 当 HUD 已经可见时，再次触发等效的 `show()` 激活，确认不会闪烁，也不会重复播放入场动画。
-- 在较长语音、partial transcript 高频刷新的情况下，确认宽度变化依然平滑，不会不断重启动画导致“橡皮筋感”。
-- 打开语言菜单，在支持的语言之间切换，确认当前识别语言会跟着更新。
-- 打开 Settings，保存一组有效的 LLM API 配置，并使用连接测试流程确认配置可用。
-- 启用 LLM refinement，确认成功路径会粘贴 refine 之后的文本。
-- 人为制造一次 LLM 失败，确认应用会回退到原始 transcript 而不是中断流程。
-- 在 CJK 输入法激活时触发粘贴，确认应用会在粘贴后恢复原始输入源。
-- 确认注入完成后，原有剪贴板内容会被恢复。
-- 运行 `make build`，从生成的 `.app` bundle 启动应用，并重复主要的端到端语音输入检查。
-- 运行 `make run`，确认应用可以通过项目工作流正常启动。
-- 运行 `make install`，从 `/Applications` 启动已安装的应用，并再次完成端到端检查。
+- Grant `Microphone`, `Speech Recognition`, and `Accessibility` permissions on first launch, then relaunch and confirm the app handles both granted and denied states correctly.
+- Hold `Fn` and speak, and confirm recording only starts while the key is held and stops immediately on release.
+- Hold `Fn` inside a text field and confirm the system emoji picker does not appear.
+- Speak softly and loudly in separate runs and confirm the live HUD waveform clearly responds to the difference in input level.
+- Confirm the HUD stays bottom-centered while partial transcript text updates, and that it resizes smoothly as the text grows.
+- When the HUD is already visible, trigger an equivalent `show()` activation again and confirm it does not flicker or replay the enter animation.
+- During longer dictation with frequent partial transcript updates, confirm width changes stay smooth and do not restart animations repeatedly into a rubber-band effect.
+- Open the language menu, switch across all supported languages, and confirm the active recognition locale updates with the selection.
+- Open Settings, save a valid LLM API configuration, and use the connection test flow to verify the configuration works.
+- Enable LLM refinement and confirm the success path injects the refined text instead of the raw transcript.
+- Force an LLM failure and confirm the app falls back to the original transcript rather than aborting the flow.
+- Trigger paste while a CJK input method is active and confirm the app restores the original input source after injection.
+- Confirm the original clipboard contents are restored after text injection completes.
+- Run `make build`, launch the generated `.app` bundle, and repeat the core end-to-end voice input checks.
+- Run `make run` and confirm the app launches correctly through the project workflow.
+- Run `make install`, launch the installed app from `/Applications`, and repeat the end-to-end checks.
